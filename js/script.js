@@ -62,6 +62,8 @@ $("#name").keyup(function(event) {
 });
 
 $("#button").click(function() {
+  
+
   if ($("#name")[0].value) {
     $(".info").hide("fast");
     $(".loader").show("fast");
@@ -130,8 +132,8 @@ $("#button").click(function() {
 
         request.send();
       } else {
-        $("#name")[0].value = ("");
-        $("#name")[0].placeholder = "Вы ввели неправильный ник";
+        $("#name")[0].value = "";
+        $("#name")[0].placeholder = "There is no such player :(";
         $(".loader").hide("fast");
         $(".info").hide("fast");
       }
@@ -139,7 +141,7 @@ $("#button").click(function() {
 
     request.send();
   } else {
-    $("#name")[0].placeholder = "Вы не ввели свой ник";
+    $("#name")[0].placeholder = "You haven't entered your nickname :(";
     $(".info").hide("fast");
   }
 });
