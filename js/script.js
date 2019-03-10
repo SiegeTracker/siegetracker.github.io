@@ -78,56 +78,63 @@ $("#button").click(function() {
     request.onload = function() {
       getResponse = JSON.parse(request.responseText);
 
-      id = getResponse["results"][0].p_id;
+      if (getResponse.totalresults !== 0) {
+        id = getResponse["results"][0].p_id;
 
-      if (getResponse["results"][0].kd < 100) {
-        $("#kd").val(`0.${getResponse["results"][0].kd}`);
+        if (getResponse["results"][0].kd < 100) {
+          $("#kd").val(`0.${getResponse["results"][0].kd}`);
+        } else {
+          $("#kd").val(getResponse["results"][0].kd / 100);
+        }
+
+        $("#mmr").val(getResponse["results"][0].p_currentmmr);
+        $("#rank").val(ranks[getResponse["results"][0].p_currentrank]);
+        $("#level").val(getResponse["results"][0].p_level);
+
+        request = new XMLHttpRequest();
+        request.open(
+          "GET",
+          `https://cors-anywhere.herokuapp.com/https://r6tab.com/api/player.php?p_id=${id}`
+        );
+        request.responseType = "text";
+
+        request.onload = function() {
+          $(".info").show("fast");
+          $(".loader").hide("fast");
+
+          getFullResponse = JSON.parse(request.responseText);
+
+          $("#mmr-prev").val(getFullResponse.season12mmr);
+          $("#rank-prev").val(ranks[getFullResponse.season12rank]);
+
+          $("#fav-atk").val(opid2name(getFullResponse.favattacker)[0]);
+          $("#fav-dfd").val(opid2name(getFullResponse.favdefender)[0]);
+
+          fullStats =
+            "[" +
+            getFullResponse.allstats +
+            '["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","","",""]]';
+          parsedStats = JSON.parse(fullStats);
+          rankedKills = 0;
+          rankedDeaths = 0;
+
+          parsedStats.forEach(function(arr_value) {
+            rankedKills += Number(arr_value[6]);
+            rankedDeaths += Number(arr_value[7]);
+          });
+
+          rankedKD = (rankedKills / rankedDeaths).toFixed(2);
+
+          $("#s-kd").val(rankedKD);
+        };
+
+        request.send();
       } else {
-        $("#kd").val(getResponse["results"][0].kd / 100);
-      }
-
-      $("#mmr").val(getResponse["results"][0].p_currentmmr);
-      $("#rank").val(ranks[getResponse["results"][0].p_currentrank]);
-      $("#level").val(getResponse["results"][0].p_level);
-
-      request = new XMLHttpRequest();
-      request.open(
-        "GET",
-        `https://cors-anywhere.herokuapp.com/https://r6tab.com/api/player.php?p_id=${id}`
-      );
-      request.responseType = "text";
-
-      request.onload = function() {
-        $(".info").show("fast");
+        $("#name")[0].value = ("");
+        $("#name")[0].placeholder = "Вы ввели неправильный ник";
         $(".loader").hide("fast");
-
-        getFullResponse = JSON.parse(request.responseText);
-
-        $("#mmr-prev").val(getFullResponse.season12mmr);
-        $("#rank-prev").val(ranks[getFullResponse.season12rank]);
-
-        $("#fav-atk").val(opid2name(getFullResponse.favattacker)[0]);
-        $("#fav-dfd").val(opid2name(getFullResponse.favdefender)[0]);
-
-        fullStats =
-          "[" +
-          getFullResponse.allstats +
-          '["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","","",""]]';
-        parsedStats = JSON.parse(fullStats);
-        rankedKills = 0;
-        rankedDeaths = 0;
-
-        parsedStats.forEach(function(arr_value) {
-          rankedKills += Number(arr_value[6]);
-          rankedDeaths += Number(arr_value[7]);
-        });
-
-        rankedKD = (rankedKills / rankedDeaths).toFixed(2);
-
-        $("#s-kd").val(rankedKD);
-      };
-
-      request.send();
+        $(".info").hide("fast");
+      }
     };
 
     request.send();
