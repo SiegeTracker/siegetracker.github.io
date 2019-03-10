@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>R6Statistics</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron mt-md-5 mt-2 mb-0">
+        <h1 class="display-4">Статистика</h1>
+        <p class="lead">
+          Введите свой Uplay ник полностью, что бы получить простую статистику.
+          Получение статистики может занять некторое время.
+        </p>
+
+        <div class="row">
+          <div class="col-12 col-md-3 mb-3">
+            <a href="#" id="beobah" class="btn-team btn-block btn btn-info"
+              >Beobah</a
+            >
+          </div>
+
+          <div class="col-12 col-md-3 mb-3">
+            <a href="#" id="maslorie" class="btn-block btn btn-info"
+              >Maslorie</a
+            >
+          </div>
+
+          <div class="col-12 col-md-3 mb-3">
+            <a href="#" id="beabah" class="btn-block btn btn-info">Beabah</a>
+          </div>
+
+          <div class="col-12 col-md-3">
+            <a href="#" id="exitium" class="btn-block btn btn-info"
+              >Exitium.-</a
+            >
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Uplay</span>
+          </div>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            placeholder="Nickname"
+            aria-label="Nickname"
+            aria-describedby="basic-addon1"
+            required
+          />
+        </div>
+
+        <hr />
+
+        <div class="loader text-center">
+          <img src="img/Spinner-1s-200px.svg" alt="loader" />
+        </div>
+
+        <div class=" info row">
+          <div class="col-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Level</span
+                >
+              </div>
+              <input type="text" class="form-control text-center" id="level" />
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >K/D</span
+                >
+              </div>
+              <input type="text" class="form-control text-center" id="kd" />
+            </div>
+          </div>
+
+          <hr class="col-12" />
+
+          <div class="col-md-6 col-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >MMR</span
+                >
+              </div>
+              <input type="text" class="form-control text-center" id="mmr" />
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Rank</span
+                >
+              </div>
+              <input type="text" class="form-control text-center" id="rank" />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Seasonal KD</span
+                >
+              </div>
+              <input type="text" class="form-control text-center" id="s-kd" />
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Prev MMR</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="mmr-prev"
+              />
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Prev Rank</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="rank-prev"
+              />
+            </div>
+          </div>
+
+          <hr class="col-12">
+
+          <div class="col-6">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Atk</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="fav-atk"
+              />
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  >Def</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="fav-dfd"
+              />
+            </div>
+          </div>
+
+        </div>
+        <hr />
+
+        <div class="row">
+          <a id="button" class="btn btn-success col-12" href="#" role="button"
+            >Узнать статистику</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
