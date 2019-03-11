@@ -1,6 +1,7 @@
 let name;
 let getResponse;
 let id;
+let user;
 let getFullResponse;
 let fullStats;
 let parsedStats;
@@ -81,7 +82,10 @@ $("#button").click(function() {
       getResponse = JSON.parse(request.responseText);
 
       if (getResponse.totalresults !== 0) {
+        user = getResponse["results"][0].p_user;
         id = getResponse["results"][0].p_id;
+
+        $("#avatar").attr("src",`https://ubisoft-avatars.akamaized.net/${user}/default_146_146.png`);
 
         if (getResponse["results"][0].kd < 100) {
           $("#kd").val(`0.${getResponse["results"][0].kd}`);

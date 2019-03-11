@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>SiegeStats</title>
+    <title>SiegeTracker</title>
     <link rel="shortcut icon" href="/img/r6-icon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -20,8 +20,8 @@
       <div class="jumbotron mt-md-5 mt-2 mb-0">
         <h1 class="display-4">SiegeStats</h1>
         <p class="lead">
-          Enter your Uplay nickname completely to get simple stats.<br>
-          Getting stats can take some time.
+          Enter your Uplay nickname completely to get simple statistic.<br />
+          Getting statistic can take some time.
         </p>
 
         <div class="row">
@@ -72,26 +72,42 @@
           <hr class="col-12" />
         </div>
 
-        <div class=" info row">
-          <div class="col-6">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"
-                  >Level</span
-                >
-              </div>
-              <input type="text" class="form-control text-center" id="level" />
-            </div>
+        <div class=" info row ">
+          <div class="col-3 mb-3 mb-md-0 text-center">
+            <img class="img-thumbnail img-fluid"  id="avatar" alt="Player Avatar" />
           </div>
 
-          <div class="col-6">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"
-                  >K/D</span
-                >
+          <div class="col-9">
+            <div class="row">
+              <div class="col-12 mb-3 mb-md-5">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >Level</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control text-center"
+                    id="level"
+                  />
+                </div>
               </div>
-              <input type="text" class="form-control text-center" id="kd" />
+
+              <div class="col-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                      >K/D</span
+                    >
+                  </div>
+                  <input type="text" class="form-control text-center" id="kd" />
+                </div>
+              </div>
             </div>
           </div>
 
