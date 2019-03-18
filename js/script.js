@@ -1,15 +1,4 @@
-let name;
-let getResponse;
-let id;
-let user;
-let getFullResponse;
-let fullStats;
-let parsedStats;
-let rankedKills;
-let rankedDeaths;
-let rankedKD;
-
-let ranks = [
+const RANKS = [
   "Unranked",
   "Copper 4",
   "Copper 3",
@@ -36,22 +25,7 @@ let ranks = [
 $(".info").hide();
 $(".loader").hide();
 
-$("#beobah").click(function() {
-  $("#name").val(this.innerHTML);
-  $("#button").click();
-});
-
-$("#maslorie").click(function() {
-  $("#name").val(this.innerHTML);
-  $("#button").click();
-});
-
-$("#beabah").click(function() {
-  $("#name").val(this.innerHTML);
-  $("#button").click();
-});
-
-$("#exitium").click(function() {
+$('.btn-team').click(function() {
   $("#name").val(this.innerHTML);
   $("#button").click();
 });
@@ -69,7 +43,7 @@ $("#button").click(function() {
     $(".info").hide("fast");
     $(".loader").show("fast");
 
-    name = $("#name")[0].value;
+    let name = $("#name")[0].value;
 
     var request = new XMLHttpRequest();
     request.open(
@@ -79,11 +53,11 @@ $("#button").click(function() {
     request.responseType = "text";
 
     request.onload = function() {
-      getResponse = JSON.parse(request.responseText);
+      let getResponse = JSON.parse(request.responseText);
 
       if (getResponse.totalresults !== 0) {
-        user = getResponse["results"][0].p_user;
-        id = getResponse["results"][0].p_id;
+        let user = getResponse["results"][0].p_user;
+        let id = getResponse["results"][0].p_id;
 
         $("#avatar").attr("src",`https://ubisoft-avatars.akamaized.net/${user}/default_146_146.png`);
 
@@ -94,7 +68,7 @@ $("#button").click(function() {
         }
 
         $("#mmr").val(getResponse["results"][0].p_currentmmr);
-        $("#rank").val(ranks[getResponse["results"][0].p_currentrank]);
+        $("#rank").val(RANKS[getResponse["results"][0].p_currentrank]);
         $("#level").val(getResponse["results"][0].p_level);
 
         request = new XMLHttpRequest();
@@ -108,30 +82,15 @@ $("#button").click(function() {
           $(".info").show("fast");
           $(".loader").hide("fast");
 
-          getFullResponse = JSON.parse(request.responseText);
+          let getFullResponse = JSON.parse(request.responseText);
 
           $("#mmr-prev").val(getFullResponse.season12mmr);
-          $("#rank-prev").val(ranks[getFullResponse.season12rank]);
+          $("#rank-prev").val(RANKS[getFullResponse.season12rank]);
 
           $("#fav-atk").val(opid2name(getFullResponse.favattacker)[0]);
           $("#fav-dfd").val(opid2name(getFullResponse.favdefender)[0]);
 
-          fullStats =
-            "[" +
-            getFullResponse.allstats +
-            '["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","","",""]]';
-          parsedStats = JSON.parse(fullStats);
-          rankedKills = 0;
-          rankedDeaths = 0;
-
-          parsedStats.forEach(function(arr_value) {
-            rankedKills += Number(arr_value[6]);
-            rankedDeaths += Number(arr_value[7]);
-          });
-
-          rankedKD = (rankedKills / rankedDeaths).toFixed(2);
-
-          $("#s-kd").val(rankedKD);
+          $("#s-kd").val((getFullResponse.seasonal.total_rankedkills / getFullResponse.seasonal.total_rankeddeaths).toFixed(2));
         };
 
         request.send();
@@ -147,6 +106,7 @@ $("#button").click(function() {
   } else {
     $("#name")[0].placeholder = "You haven't entered your nickname :(";
     $(".info").hide("fast");
+    $(".loader").hide("fast");
   }
 });
 
